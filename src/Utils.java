@@ -35,23 +35,26 @@ public class Utils {
             String[] lineOfCoordinates = lines[a].split(",");
 
      //account for comma in difference which incorrectly splits number
-            lineOfCoordinates[6] += lineOfCoordinates[7];
-            for (int i = 7; i < lineOfCoordinates.length-1; i++) {
-                lineOfCoordinates[i] = lineOfCoordinates[i+1];
+            ArrayList<Double> numberCoordinates = new ArrayList<>();
+            if(lineOfCoordinates.length>11) {
+                lineOfCoordinates[6] += lineOfCoordinates[7];
+                for (int i = 7; i < lineOfCoordinates.length - 1; i++) {
+                    lineOfCoordinates[i] = lineOfCoordinates[i + 1];
+                }
             }
-            double[] numberCoordinates = new double[lineOfCoordinates.length-4];
+
             for (int i = 1; i < lineOfCoordinates.length; i++) {
                 lineOfCoordinates[i].trim();
             }
-            for (int i = 1; i < numberCoordinates.length; i++) {
+            for (int i = 1; i < 8; i++) {
                 // make every number value ready to parse into an integer or a double by removing % or ,
                 lineOfCoordinates[i] = cleanUp(lineOfCoordinates[i]);
-                numberCoordinates[i] = Double.parseDouble(lineOfCoordinates[i]);
+                numberCoordinates.add(Double.parseDouble(lineOfCoordinates[i]));
             }
        //             Create a new object using those values
             // inputs to constructor start at 1 to ignore the row number in the data
-            System.out.println(numberCoordinates.length);
-            ElectionResult newElecResult = new ElectionResult(numberCoordinates[1], numberCoordinates[2], numberCoordinates[3], numberCoordinates[4], numberCoordinates[5], numberCoordinates[6], numberCoordinates[7], lineOfCoordinates[8], lineOfCoordinates[9], lineOfCoordinates[10]);
+            System.out.println(numberCoordinates.size());
+            ElectionResult newElecResult = new ElectionResult(numberCoordinates.get(1), numberCoordinates.get(2), numberCoordinates.get(3), numberCoordinates.get(4), numberCoordinates.get(5), numberCoordinates.get(6), numberCoordinates.get(7), lineOfCoordinates[8], lineOfCoordinates[9], lineOfCoordinates[10]);
             //     Add it to your list.
             results.add(newElecResult);
         }
