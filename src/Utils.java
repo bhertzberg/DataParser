@@ -37,7 +37,7 @@ public class Utils {
             for (int i = 0; i < lineOfCoordinates.length; i++) {
                 lineOfCoordinates[i].trim();
             }
-            for (int i = 0; i < numberCoordinates.length; i++) {
+            for (int i = 1; i < numberCoordinates.length; i++) {
                 // make every number value ready to parse into an integer or a double by removing % or ,
                 lineOfCoordinates[i] = cleanUp(lineOfCoordinates[i]);
                 numberCoordinates[i] = Double.parseDouble(lineOfCoordinates[i]);
