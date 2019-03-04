@@ -95,4 +95,8 @@ public class ElectionResult {
     public void setCombinedFips(String combinedFips) {
         this.combinedFips = combinedFips;
     }
+
+    public String toString(){
+        return "dem votes: " + demVotes + " gop votes: " + gopVotes + " total votes: " + totalVotes + " dem percent: " + demPercent + " gop percent: " + gopPercent + " vote difference: " + voteDifference + " percent difference: " + percentDifference + " state abbreviation: " + stateAbbreviation + " county: " + county + " combined fips: " + combinedFips;
+    }
 }
