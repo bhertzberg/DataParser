@@ -33,13 +33,23 @@ public class Utils {
      //       for each row {
      //       split it into individual values and save into the right kinds of variables.
             String[] lineOfCoordinates = lines[a].split(",");
-            double[] numberCoordinates = new double[lineOfCoordinates.length-3];
-            for (int i = 0; i < lineOfCoordinates.length; i++) {
+
+     //account for comma in difference which incorrectly splits number
+            lineOfCoordinates[6] += lineOfCoordinates[7];
+            for (int i = 7; i < lineOfCoordinates.length-1; i++) {
+                lineOfCoordinates[i] = lineOfCoordinates[i+1];
+            }
+            double[] numberCoordinates = new double[lineOfCoordinates.length-4];
+            for (int i = 1; i < lineOfCoordinates.length; i++) {
+                System.out.println(lineOfCoordinates.length);
                 lineOfCoordinates[i].trim();
             }
             for (int i = 1; i < numberCoordinates.length; i++) {
                 // make every number value ready to parse into an integer or a double by removing % or ,
+                System.out.println(lineOfCoordinates[i]);
                 lineOfCoordinates[i] = cleanUp(lineOfCoordinates[i]);
+
+                System.out.println(lineOfCoordinates[i]);
                 numberCoordinates[i] = Double.parseDouble(lineOfCoordinates[i]);
             }
        //             Create a new object using those values
@@ -51,17 +61,15 @@ public class Utils {
     }
 
     private static String cleanUp(String value) {
-        String cleanNumber = "";
-        value.trim();
+        String cleanNumber = value;
+
         if(value.contains("\"") ){
-            cleanNumber = value.substring(value.indexOf("\""), value.indexOf("\"", 1));
+           cleanNumber = value.substring(1, value.length()-1);
+           //cleanNumber = value;
         }
-        if(value.contains(",")){
-            String[] splitAtComma = value.split(",");
-            cleanNumber = splitAtComma[0] + splitAtComma[1];
-        }
+
         if (value.contains("%")){
-            cleanNumber = value.substring(0, value.length()-1);
+           cleanNumber = value.substring(0, value.length()-1);
         }
         return cleanNumber;
     }
