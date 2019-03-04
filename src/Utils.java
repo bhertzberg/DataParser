@@ -39,7 +39,7 @@ public class Utils {
             }
             for (int i = 0; i < numberCoordinates.length; i++) {
                 // make every number value ready to parse into an integer or a double by removing % or ,
-                cleanUp(lineOfCoordinates[i]);
+                lineOfCoordinates[i] = cleanUp(lineOfCoordinates[i]);
                 numberCoordinates[i] = Double.parseDouble(lineOfCoordinates[i]);
             }
        //             Create a new object using those values
@@ -50,8 +50,20 @@ public class Utils {
         return results;
     }
 
-    private static void cleanUp(String value) {
-
+    private static String cleanUp(String value) {
+        String cleanNumber = "";
+        value.trim();
+        if(value.contains("\"") ){
+            cleanNumber = value.substring(value.indexOf("\""), value.indexOf("\"", 1));
+        }
+        if(value.contains(",")){
+            String[] splitAtComma = value.split(",");
+            cleanNumber = splitAtComma[0] + splitAtComma[1];
+        }
+        if (value.contains("%")){
+            cleanNumber = value.substring(0, value.length()-1);
+        }
+        return cleanNumber;
     }
 
 }
