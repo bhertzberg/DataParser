@@ -41,19 +41,17 @@ public class Utils {
             }
             double[] numberCoordinates = new double[lineOfCoordinates.length-4];
             for (int i = 1; i < lineOfCoordinates.length; i++) {
-                System.out.println(lineOfCoordinates.length);
                 lineOfCoordinates[i].trim();
             }
             for (int i = 1; i < numberCoordinates.length; i++) {
                 // make every number value ready to parse into an integer or a double by removing % or ,
-                System.out.println(lineOfCoordinates[i]);
                 lineOfCoordinates[i] = cleanUp(lineOfCoordinates[i]);
-
-                System.out.println(lineOfCoordinates[i]);
                 numberCoordinates[i] = Double.parseDouble(lineOfCoordinates[i]);
             }
        //             Create a new object using those values
-            ElectionResult newElecResult = new ElectionResult(numberCoordinates[0], numberCoordinates[1], numberCoordinates[2], numberCoordinates[3], numberCoordinates[4], numberCoordinates[5], numberCoordinates[6], lineOfCoordinates[7], lineOfCoordinates[8], lineOfCoordinates[9]);
+            // inputs to constructor start at 1 to ignore the row number in the data
+            System.out.println(numberCoordinates.length);
+            ElectionResult newElecResult = new ElectionResult(numberCoordinates[1], numberCoordinates[2], numberCoordinates[3], numberCoordinates[4], numberCoordinates[5], numberCoordinates[6], numberCoordinates[7], lineOfCoordinates[8], lineOfCoordinates[9], lineOfCoordinates[10]);
             //     Add it to your list.
             results.add(newElecResult);
         }
