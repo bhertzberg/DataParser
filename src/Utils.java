@@ -40,11 +40,14 @@ public class Utils {
 
      //account for comma in difference which incorrectly splits number
             ArrayList<Double> numberCoordinates = new ArrayList<>();
-            if(lineOfCoordinates.length>11) {
-               coordinates.set(5, coordinates.get(5)+ coordinates.get(6)) ;
-               coordinates.remove(6);
+            if(lineOfCoordinates.length>12) {
+                coordinates.set(5, coordinates.get(5)+ coordinates.get(6)) ;
+                coordinates.remove(6);
             }
-
+            if(lineOfCoordinates.length>11) {
+                coordinates.set(5, coordinates.get(5)+ coordinates.get(6)) ;
+                coordinates.remove(6);
+            }
             for (int i = 0; i < coordinates.size(); i++) {
                 coordinates.get(i).trim();
             }
