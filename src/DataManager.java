@@ -15,4 +15,10 @@ public class DataManager {
         private Education educ;
         private Employment employ;
     }
+
+    public class Election{
+        private double demVotes;
+        private double gopVotes;
+        private double totalVotes;
+    }
 }
