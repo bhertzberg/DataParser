@@ -21,4 +21,11 @@ public class DataManager {
         private double gopVotes;
         private double totalVotes;
     }
+
+    public class Education{
+        private double noHighSchool;
+        private double onlyHighSchool;
+        private double someCollege;
+        private double bachelorOrMore;
+    }
 }
