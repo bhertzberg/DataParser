@@ -103,4 +103,10 @@ public class Utils {
         return before + clean(toClean) + after;
     }
 
+    private static String clean(String toClean) {
+        toClean = toClean.replaceAll(",", "").trim();
+        toClean = toClean.replaceAll("%", "");
+        return toClean
+    }
+
 }
