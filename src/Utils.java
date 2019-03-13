@@ -94,4 +94,13 @@ public class Utils {
         return row;
     }
 
+    private static String cleanSubstring(String row, int firstQuote, int secondQuote) {
+        String before = row.substring(0, firstQuote);
+        String after = row.substring(secondQuote+1);
+
+        String toClean = row.substring(firstQuote+1, secondQuote);
+
+        return before + clean(toClean) + after;
+    }
+
 }
