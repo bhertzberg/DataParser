@@ -32,6 +32,7 @@ public class Utils {
 
      //       for each row {
      //       split it into individual values and save into the right kinds of variables.
+            lines[a] = cleanLine(lines[a]);
             String[] lineOfCoordinates = lines[a].split(",");
             ArrayList<String> coordinates = new ArrayList<>();
             for (int i = 1; i < lineOfCoordinates.length; i++) {
@@ -40,20 +41,13 @@ public class Utils {
 
      //account for comma in difference which incorrectly splits number
             ArrayList<Double> numberCoordinates = new ArrayList<>();
-            if(lineOfCoordinates.length>12) {
-                coordinates.set(5, coordinates.get(5)+ coordinates.get(6)) ;
-                coordinates.remove(6);
-            }
-            if(lineOfCoordinates.length>11) {
-                coordinates.set(5, coordinates.get(5)+ coordinates.get(6)) ;
-                coordinates.remove(6);
-            }
+
             for (int i = 0; i < coordinates.size(); i++) {
                 coordinates.get(i).trim();
             }
             for (int i = 0; i < 7; i++) {
                 // make every number value ready to parse into an integer or a double by removing % or ,
-                coordinates.set(i,cleanUp(coordinates.get(i)));
+                coordinates.set(i,clean(coordinates.get(i)));
                 numberCoordinates.add(Double.parseDouble(coordinates.get(i)));
 
             }
@@ -66,19 +60,6 @@ public class Utils {
         return results;
     }
 
-    private static String cleanUp(String value) {
-        String cleanNumber = value;
-
-        if(value.contains("\"") ){
-           cleanNumber = value.substring(1, value.length()-1);
-           //cleanNumber = value;
-        }
-
-        if (value.contains("%")){
-           cleanNumber = value.substring(0, value.length()-1);
-        }
-        return cleanNumber;
-    }
 
     private static String cleanLine(String row){
 
@@ -106,7 +87,7 @@ public class Utils {
     private static String clean(String toClean) {
         toClean = toClean.replaceAll(",", "").trim();
         toClean = toClean.replaceAll("%", "");
-        return toClean
+        return toClean;
     }
 
 }
