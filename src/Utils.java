@@ -80,4 +80,18 @@ public class Utils {
         return cleanNumber;
     }
 
+    private static String cleanLine(String row){
+
+        int firstQuote = row.indexOf("\"");
+        int secondQuote = row.indexOf("\"", firstQuote + 1);
+
+        while (firstQuote != -1 && secondQuote != -1){
+            row = cleanSubstring(row, firstQuote, secondQuote);
+
+            firstQuote = row.indexOf("\"");
+            secondQuote = row.indexOf("\"", firstQuote+1);
+        }
+        return row;
+    }
+
 }
