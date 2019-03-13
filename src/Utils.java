@@ -38,8 +38,6 @@ public class Utils {
             for (int i = 1; i < lineOfCoordinates.length; i++) {
                 coordinates.add(lineOfCoordinates[i]);
             }
-
-     //account for comma in difference which incorrectly splits number
             ArrayList<Double> numberCoordinates = new ArrayList<>();
 
             for (int i = 0; i < coordinates.size(); i++) {
@@ -52,12 +50,32 @@ public class Utils {
 
             }
        //             Create a new object using those values
-            // inputs to constructor start at 1 to ignore the row number in the data
             ElectionResult newElecResult = new ElectionResult( numberCoordinates.get(0), numberCoordinates.get(1), numberCoordinates.get(2), numberCoordinates.get(3), numberCoordinates.get(4), numberCoordinates.get(5), numberCoordinates.get(6), coordinates.get(7), coordinates.get(8), coordinates.get(9));
             //     Add it to your list.
             results.add(newElecResult);
         }
         return results;
+    }
+
+    public static ArrayList<Education> parse2016Education(String data) {
+        //   Create your return arraylist;
+        ArrayList<Education> results = new ArrayList<>();
+        //  split input data by \n to create array of rows
+        String[] lines = data.split("\n");
+
+        //   loop over all rows BUT SKIP THE FIRST ROW (look at the file to see why)
+        for (int a = 1; a < lines.length; a++) {
+
+            //       for each row {
+            //       split it into individual values and save into the right kinds of variables.
+            lines[a] = cleanLine(lines[a]);
+            String[] lineOfCoordinates = lines[a].split(",");
+            ArrayList<String> coordinates = new ArrayList<>();
+            for (int i = 1; i < lineOfCoordinates.length; i++) {
+                coordinates.add(lineOfCoordinates[i]);
+            }
+            ArrayList<Double> numberCoordinates = new ArrayList<>();
+        }
     }
 
 
